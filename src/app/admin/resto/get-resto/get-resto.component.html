@@ -1,0 +1,87 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Image du profil</th>
+            <th>first name</th>
+            <th>lastname</th>
+            <th>role</th>
+            <th>email</th>
+            <th>resto</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Image du profil</th>
+            <th>first name</th>
+            <th>lastname</th>
+            <th>role</th>
+            <th>email</th>
+            <th>resto</th>
+            <th>action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr  *ngFor="let i of liste">
+            <td><img class="img-profile rounded-circle" src="http://localhost:3000/uploads/{{ i.imgUrl }}"></td>
+            <td>{{ i.firstName }}</td>
+            <td>{{ i.lastName }}</td>
+            <td>{{ i.role }}</td>
+            <td>{{ i.email }}</td>
+            <td>{{ i.resto?.name }}</td>
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="sendmodal(i._id)">Details</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ one.firstName }} Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body theme">
+        <div class="container">
+          <div class="cellphone-container">
+              <div class="movie">
+                <img  class="movie-img" src="http://localhost:3000/uploads/{{ one.imgUrl }}">
+                <div class="text-movie-cont">
+                  <div class="mr-grid">
+                    <div class="col1">
+                      <h1>{{ one.firstName }} {{ one.lastName }}</h1>
+                      <ul class="movie-gen">
+                        <li>Email :{{ one.email }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="mr-grid summary-row">
+                    <div class="col2">
+                      <h5>Role : {{ one.role }} aa{{ one.resto.name }}aa</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

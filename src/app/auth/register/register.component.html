@@ -1,0 +1,78 @@
+<div class="sidenav">
+  <div class="login-main-text">
+    <h2>Application<br> Login Page</h2>
+    <p>Login or register from here to access.</p>
+  </div>
+</div>
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+    <div class="login-form">
+      <form [formGroup]="registerForm">
+
+        <div class="form-group">
+          <div class="form-label-group">
+            <input formControlName="firstName" type="text" id="inputfirstName" class="form-control"
+              placeholder="firstName" required="required" autofocus="autofocus"
+              [ngClass]="{'is-invalid': registerForm.controls['firstName']?.errors?.required && ( registerForm.controls['firstName']?.dirty || registerForm.controls['firstName']?.touched)}">
+            <label for="inputfirstName">firstName :</label>
+            <div class="invalid-feedback"
+              *ngIf="registerForm.controls['firstName']?.errors?.required && ( registerForm.controls['firstName']?.dirty ||  registerForm.controls['firstName']?.touched)">
+              firstName is required
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-group">
+            <input formControlName="lastName" type="text" id="inputlastName" class="form-control" placeholder="lastName"
+              required="required" autofocus="autofocus"
+              [ngClass]="{'is-invalid': registerForm.controls['lastName']?.errors?.required && ( registerForm.controls['lastName']?.dirty || registerForm.controls['lastName']?.touched)}">
+            <label for="inputlastName">lastName :</label>
+            <div class="invalid-feedback"
+              *ngIf="registerForm.controls['lastName']?.errors?.required && ( registerForm.controls['lastName']?.dirty ||  registerForm.controls['lastName']?.touched)">
+              lastName is required
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-group">
+            <input (change)="imgselected($event)" type="file" id="inputimgUrl" class="filestyle" data-buttonText="Select a File" autofocus="autofocus">
+            <label for="inputlastName">Image</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-group">
+            <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
+              required="required" autofocus="autofocus"
+              [ngClass]="{'is-invalid': registerForm.controls['email']?.errors?.required && ( registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched)}">
+            <label for="inputEmail">Email</label>
+            <div class="invalid-feedback"
+              *ngIf="registerForm.controls['email']?.errors?.required && ( registerForm.controls['email']?.dirty ||  registerForm.controls['email']?.touched)">
+              email is required
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-group">
+            <input formControlName="password" type="password" id="inputPassword" class="form-control"
+              [ngClass]="{'is-invalid': registerForm.controls['password']?.errors?.required && ( registerForm.controls['password']?.dirty || registerForm.controls['password']?.touched)}"
+              placeholder="Password" required="required">
+            <label for="inputPassword">Password</label>
+            <div class="invalid-feedback"
+              *ngIf="registerForm.controls['password']?.errors?.required && ( registerForm.controls['password']?.dirty ||  registerForm.controls['password']?.touched)">
+              password is required
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" [disabled]="!registerForm.valid"
+          (click)="registerBtn()">Login</button>
+        <div class="alert alert-danger" role="alert" *ngIf="message">
+          {{message}}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

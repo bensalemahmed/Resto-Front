@@ -1,0 +1,137 @@
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Resto</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">Resto Disponible a votre service {{ admin.firstName }}  </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" > <img class="img-profile rounded-circle" src="http://localhost:3000/uploads/{{admin.imgUrl}}"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" (click)="onLogOutClicked()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Projects Section -->
+  <section id="about" class="projects-section bg-light">
+    <div class="container">
+
+
+
+      <!-- Project Two Row -->
+      <div class="row justify-content-center no-gutters" *ngFor="let i of allresto">
+        <div class="col-lg-6" >
+          <img class="img-fluid" src="http://localhost:3000/uploads/{{i.imgUrl}}" alt="">
+        </div>
+        <div class="col-lg-6 order-lg-first">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="plat">
+                  <button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal"  (click)="sendmodal(i._id)">Get Plat & Reservation </button>
+              </div>
+              <div class="project-text w-100 my-auto text-center text-lg-right">
+                <h4 class="text-white">{{ i.resto.name }}</h4>
+                <p class="mb-0 text-white-50">Address: {{ i.resto.address }} </p>
+                <p class="mb-0 text-white-50">Mail : {{ i.resto.email }} </p>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- Project Two Row -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black small text-center text-white-50">
+    <div class="container">
+      Copyright &copy; Your Website 2019
+    </div>
+  </footer>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"*ngIf="oneresto">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Plat Disponible</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body theme">
+          <div class="container">
+              <div role="tabpanel" class="tab-pane active" id="main">
+                  <div class="row">
+                    <div class="col-12">
+                      <ul class="menu-dish">
+                            <li *ngFor="let i of oneresto.resto.plat" >
+                              <figure class="dish-entry">
+                                <div class="dish-img" style="background-image: url(./../../../assets/images/dish-14.jpg)"></div>
+                              </figure>
+                              <div class="text">
+                                <span class="price">{{ i.price }} DT <button type="button" class="aaa btn btn-primary" data-toggle="modal" data-target="#reservation" (click)="verif(i._id)" >Passer Une Reservation</button> </span>
+                                <h3>{{ i.name }}</h3>
+                                <p class="cat">{{ i.description }}</p>
+                              </div>
+                            </li>
+                          </ul>
+                    </div>
+                  </div>
+                </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal reservation -->
+<div class="modal fade" id="reservation" tabindex="-1" role="dialog" aria-labelledby="reservation" aria-hidden="true"*ngIf="oneresto">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Plat Disponible</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body theme">
+          <div class="container">
+              est ce que vous etes sur
+          </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="aaa btn btn-primary" (click)="sendMail()"  >VALIDER</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

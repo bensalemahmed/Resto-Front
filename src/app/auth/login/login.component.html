@@ -1,0 +1,50 @@
+<div class="sidenav">
+  <div class="login-main-text">
+     <h2>Application<br> Login Page</h2>
+     <p>Login or register from here to access.</p>
+  </div>
+</div>
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+     <div class="login-form">
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <div class="form-label-group">
+            <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
+              required="required" autofocus="autofocus"
+              [ngClass]="{'is-invalid': loginForm.controls['email']?.errors?.required && ( loginForm.controls['email']?.dirty || loginForm.controls['email']?.touched)}">
+              <label for="inputEmail">Email</label>
+              <div class="invalid-feedback"
+              *ngIf="loginForm.controls['email']?.errors?.required && ( loginForm.controls['email']?.dirty ||  loginForm.controls['email']?.touched)">
+              email is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input formControlName="password" type="password" id="inputPassword" class="form-control"
+              [ngClass]="{'is-invalid': loginForm.controls['password']?.errors?.required && ( loginForm.controls['password']?.dirty || loginForm.controls['password']?.touched)}"
+              placeholder="Password" required="required">
+            <label for="inputPassword">Password</label>
+            <div class="invalid-feedback"
+            *ngIf="loginForm.controls['password']?.errors?.required && ( loginForm.controls['password']?.dirty ||  loginForm.controls['password']?.touched)">
+            password is required
+          </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="remember-me">
+              Remember Password
+            </label>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" [disabled]="!loginForm.valid" (click)="loginBtn()">Login</button>
+        <div class="alert alert-danger" role="alert" *ngIf="message">
+          {{message}}
+        </div>
+      </form>
+     </div>
+  </div>
+</div>

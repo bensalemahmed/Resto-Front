@@ -1,0 +1,130 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Image du profil</th>
+            <th>first name</th>
+            <th>lastname</th>
+            <th>role</th>
+            <th>email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Image du profil</th>
+            <th>first name</th>
+            <th>lastname</th>
+            <th>role</th>
+            <th>email</th>
+            <th>action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr  *ngFor="let i of liste">
+            <td><img class="img-profile rounded-circle" src="http://localhost:3000/uploads/{{ i.imgUrl }}"></td>
+            <td>{{ i.firstName }}</td>
+            <td>{{ i.lastName }}</td>
+            <td>{{ i.role }}</td>
+            <td>{{ i.email }}</td>
+
+            <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"*ngIf="!i.resto"  (click)="sendmodal(i._id)">Add resto to {{ i.firstName }}</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ one.firstName }} Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body theme">
+        <div class="main">
+          <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+              <form [formGroup]="restoForm">
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input formControlName="name" type="text" id="inputname" class="form-control"
+                      placeholder="name" required="required" autofocus="autofocus"
+                      [ngClass]="{'is-invalid': restoForm.controls['name']?.errors?.required && ( restoForm.controls['name']?.dirty || restoForm.controls['name']?.touched)}">
+                    <label for="inputname">name :</label>
+                    <div class="invalid-feedback"
+                      *ngIf="restoForm.controls['name']?.errors?.required && ( restoForm.controls['name']?.dirty ||  restoForm.controls['name']?.touched)">
+                      name is required
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input formControlName="email" type="text" id="inputemail" class="form-control"
+                      placeholder="email" required="required" autofocus="autofocus"
+                      [ngClass]="{'is-invalid': restoForm.controls['email']?.errors?.required && ( restoForm.controls['email']?.dirty || restoForm.controls['email']?.touched)}">
+                    <label for="inputemail">email :</label>
+                    <div class="invalid-feedback"
+                      *ngIf="restoForm.controls['email']?.errors?.required && ( restoForm.controls['email']?.dirty ||  restoForm.controls['email']?.touched)">
+                      email is required
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input formControlName="tel" type="text" id="inputtel" class="form-control"
+                      placeholder="tel" required="required" autofocus="autofocus"
+                      [ngClass]="{'is-invalid': restoForm.controls['tel']?.errors?.required && ( restoForm.controls['tel']?.dirty || restoForm.controls['tel']?.touched)}">
+                    <label for="inputtel">tel :</label>
+                    <div class="invalid-feedback"
+                      *ngIf="restoForm.controls['tel']?.errors?.required && ( restoForm.controls['tel']?.dirty ||  restoForm.controls['tel']?.touched)">
+                      tel is required
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input formControlName="address" type="text" id="inputaddress" class="form-control"
+                      placeholder="address" required="required" autofocus="autofocus"
+                      [ngClass]="{'is-invalid': restoForm.controls['address']?.errors?.required && ( restoForm.controls['address']?.dirty || restoForm.controls['address']?.touched)}">
+                    <label for="inputaddress">address :</label>
+                    <div class="invalid-feedback"
+                      *ngIf="restoForm.controls['address']?.errors?.required && ( restoForm.controls['address']?.dirty ||  restoForm.controls['address']?.touched)">
+                      address is required
+                    </div>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary btn-block" [disabled]="!restoForm.valid"
+                  (click)="addresto()">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

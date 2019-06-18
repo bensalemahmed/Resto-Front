@@ -1,0 +1,69 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Image du profil</th>
+            <th>first name</th>
+            <th>lastname</th>
+            <th>role</th>
+            <th>email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Image du profil</th>
+            <th>first name</th>
+            <th>lastname</th>
+            <th>role</th>
+            <th>email</th>
+            <th>action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr  *ngFor="let i of liste">
+            <td><img class="img-profile rounded-circle" src="http://localhost:3000/uploads/{{ i.imgUrl }}"></td>
+            <td>{{ i.firstName }}</td>
+            <td>{{ i.lastName }}</td>
+            <td>{{ i.role }}</td>
+            <td>{{ i.email }}</td>
+
+            <td><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"  (click)="sendmodal(i._id)">delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ one.firstName }} Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body theme">
+        <div class="container">
+          <h1>Are You Sure To Delete This Admin {{ one.firstName }}</h1>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(one._id)">edit</button>
+
+      </div>
+    </div>
+  </div>
+</div>

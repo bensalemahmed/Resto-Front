@@ -1,0 +1,33 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>description</th>
+            <th>price</th>
+          </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>description</th>
+                <th>price</th>
+              </tr>
+
+        </tfoot>
+        <tbody>
+            <tr   *ngFor="let i of admin.resto.plat">
+                <th>{{ i.name }}</th>
+                <th>{{ i.description }}</th>
+                <th>{{ i.price }}</th>
+              </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
